@@ -1,0 +1,100 @@
+
+<!-- Footer -->
+<!-- Footer -->
+
+<!-- Footer -->
+<footer class="page-footer font-small pt-4" id="footer" style="background-color: #eeeeee;">
+    <hr id="hr_body">
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+      
+      <!-- Grid row -->
+      <div class="row">
+
+        <!-- Grid column -->
+        <div class="col-md-6 mt-md-0 mt-3">
+
+          <!-- Content -->
+          <h5 class="text-uppercase"><strong>Art space</strong></h5>
+          <p>You can create pictures together with your friends on this site. Have fun!</p>
+
+        </div>
+        <!-- Grid column -->
+
+        
+        <!-- Grid column -->
+        <div class="col-md-3 mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase"><strong>Links</strong></h5>
+
+            <ul class="list-unstyled">
+              <li>           
+                <%= link_to "Home", root_path %>
+              </li>
+              <li>
+                <%= link_to "About us", "#" %>
+              </li>
+              
+            </ul>
+
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          
+          <div class="col-md-3 mb-md-0 mb-3">
+
+            <!-- Links -->
+            <h5 class="text-uppercase"><strong>Links</strong></h5>
+
+            <ul class="list-unstyled">
+              <% if logged_in? %>
+                <li>
+                  <%= link_to "Users",   users_path %>
+                </li>
+                <li>
+                 <%= link_to "Profile",   current_user %>
+                </li>
+              <% else %>
+                <li><%= link_to "Log in", login_path %></li>
+                <li><%= link_to "Sign up", signup_path %></li>
+              <% end %>
+            </ul>
+
+          </div>
+          
+          <!-- Grid column -->
+
+      </div>
+      <!-- Grid row -->
+
+    </div>
+    <!-- Footer Links -->
+
+    <!-- Copyright -->
+    <div class="footer-copyright text-center" style="margin-top: 20px;">© 2018 Copyright:
+      <%= link_to "Artspace.com",   root_path %>
+    </div>
+    <!-- Copyright -->
+
+  </footer>
+  <!-- Footer -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

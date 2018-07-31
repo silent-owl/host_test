@@ -1,0 +1,40 @@
+<% provide(:title, "Home") %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= yield(:title) %> | Art Spaces</title>
+    
+  </head>
+  <body>
+    
+    
+    
+    <div class="center jumbotron">
+      <%= link_to image_tag("main_image.png", alt: "Home main logo"),
+            '#' %>
+      <h1>Welcome to the Art Space</h1>
+
+      <h2>
+        <a href="#">Create rooms and make pictures like an artist</a>
+      </h2>
+
+    
+    <% if logged_in? %>
+      <%= link_to "Start drawing!", "#", class: "btn btn-lg btn-primary"%>        
+    <% else %>
+     <%= link_to "Sign up now!", signup_path, class: "btn btn-lg btn-primary" %>       
+    <% end %>
+    </div>
+    
+<!-- <script type="text/javascript">
+  $(document).ready(function() {
+    $('a[disabled=disabled]').click(function(event){
+        event.preventDefault(); 
+    });
+});
+</script> -->
+<!-- <%= link_to image_tag("rgb.png", alt: "Art Space logo"),
+            '#' %> -->
+  
+  </body>
+</html>

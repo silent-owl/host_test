@@ -1,0 +1,125 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" ; integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+<% provide(:title, 'All users') %>
+<h1>All users</h1>
+
+<form name="MainForm">
+ 
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group" style="padding: 2px;margin-bottom: 5px; border: 2px solid lightgrey;">            
+            <!-- <button type="submit" class="btn btn-lg btn-dark fas fa-lock" id="lock" ></button> -->
+            <%= link_to "", {action: :ban_users}, method: :delete, remote: true, :class=>'btn btn-lg btn-dark fas fa-lock', id: 'ban' %>
+           <!--  <button type="submit" class="btn btn-lg btn-dark fas fa-unlock" id="unlock"></button> -->
+            <%= link_to "", {action: :unban_users}, method: :delete, remote: true, :class=>'btn btn-lg btn-dark fas fa-lock-open', id: 'unban' %>
+            <!-- <button type="submit" class="btn btn-lg btn-dark fas fa-trash" id="trash"></button> -->
+            <%= link_to "", {action: :delete_users}, method: :delete, remote: true, :class=>'btn btn-lg btn-dark fas fa-trash-alt', id: 'trash' %>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th>
+                <input type="checkbox" class="checkbox" id="checkBoxAll">
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th class="center">
+                <strong>Blocked</strong>
+            </th>
+        </tr>
+   
+        </thead>
+        <tbody>
+            <% @users.each do |user| %>
+            
+            <tr>
+                <td>
+                    <%= check_box_tag "user_check", user.id, false, class: 'checkbox checkbox_user' %>
+                    <!-- <input type="checkbox" class="checkbox user" name="user_check" /> -->
+                </td>
+                <td>
+                    <%= user.name %> 
+                </td>
+                <td>
+                    <%= user.email %> 
+                </td>
+                <td>
+                    <input type="checkbox" class="checkbox_ban" disabled data-id="<%= user.id %>"<%= user.ban ? ' checked="checked"' : '' %>>
+                </td>
+            </tr>
+            <% end %>     
+        </tbody>
+        
+    </table>
+
+    <div id="show_ch_users"><b>Ammount of chousen users: <span style="color:green;" id="users_choise"></span></b></div>
+</form>
+
+
+<!-- <script type="text/javascript">
+  $(document).ready(function() {
+    $('a[disabled=disabled]').click(function(event){
+        event.preventDefault(); 
+    });
+});
+</script> -->
+
+<script type="text/javascript">
+    $('.document').ready(function () {
+        $("#trash").attr("disabled", true);
+        $("#ban").attr("disabled", true);
+        $("#unban").attr("disabled", true);
+
+
+        ["#trash","#ban","#unban"].forEach((value) => {
+            let button_id = $(value); 
+            let href = button_id.attr('href'); 
+            button_id.on('click', (event) => { 
+                let newHref = href + '?' 
+                $('.checkbox_user').each(function () { 
+                    if ($(this).prop('checked') == true) { 
+                        newHref += 'user_check%5B%5D=' + $(this).val() + '&' 
+                    } 
+                }); 
+            button_id.attr('href', newHref) 
+            }); 
+        })
+
+        
+
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked"))
+                $('input[name="user_check"]').prop('checked', true);
+            else
+                $('input[name="user_check"]').prop('checked', false);
+        });
+
+        
+
+        $('.checkbox').on('click', function () {
+            var count = $('.checkbox_user:checked').length;
+
+
+            $("#users_choise").text(count);
+            if (count == 0) {
+                $("#trash").attr("disabled", true);
+                $("#ban").attr("disabled", true);
+                $("#unban").attr("disabled", true);
+            }
+            else {
+                $("#trash").attr("disabled", false);
+                $("#ban").attr("disabled", false);
+                $("#unban").attr("disabled", false);
+            }
+
+
+            // if (($(this).is(":unchecked")) && ($('#checkBoxAll').is(":checked")) )
+
+
+        });
+    });
+</script>
