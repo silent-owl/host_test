@@ -10,7 +10,7 @@ gem  'pg' ,  '0.20.0'
 gem 'rails_12factor', group: :production
 
 gem "will_paginate", "~> 3.0.4" 
-gem 'sendgrid-ruby'
+
 
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
