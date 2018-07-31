@@ -5,12 +5,12 @@ Rails.application.configure do
   host = 'obscure-earth-87476.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
   ActionMailer::Base.smtp_settings = {
-    :address        => 'smpt.gmail.com',
+    :address        => 'smtp.gmail.com',
     :port           => 587,
     :domain         => 'mail.google.com',
-    :authentication => :plain,
     :user_name      => 'accept.mail.rails@gmail.com',
     :password       =>  '123ruby123',
+    :authentication => :plain,
     :enable_starttls_auto => true
   }
   # app104419507@heroku.com
