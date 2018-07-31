@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       @user.send_activation_email
       flash[:info] = "Please check your email to activate your account."
       redirect_to @user
-      # flash[:success] = "Welcome to the Art Spaces!"
+      flash[:success] = "Welcome to the Art Spaces!"
       # Handle a successful save.
     else
       render 'new'
