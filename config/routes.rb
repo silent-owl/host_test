@@ -12,4 +12,5 @@ Rails.application.routes.draw do
   delete 'users/ban_users', :as => :ban_users
   delete 'users/unban_users', :as => :unban_users
   resources :users 
+  resources :account_activations, only: [:edit]
 end
