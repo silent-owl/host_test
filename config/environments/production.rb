@@ -7,7 +7,7 @@ Rails.application.configure do
   ActionMailer::Base.smtp_settings = {
     :address        => 'smpt.gmail.com',
     :port           => 587,
-    :domain         => 'mail.gmail.com',
+    :domain         => 'mail.google.com',
     :authentication => :plain,
     :user_name      => 'accept.mail.rails@gmail.com',
     :password       =>  '123ruby123',
