@@ -8,14 +8,14 @@ Rails.application.configure do
     :address        => 'smtp.sendgrid.net',
     :port           => '587',
     :authentication => :plain,
-    :user_name      => ENV['SENDGRID_USERNAME'],
-    :password       => ENV['SENDGRID_PASSWORD'],
+    :user_name      => 'apikey',
+    :password       => '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',
     :domain         => 'heroku.com',
     :enable_starttls_auto => true
   }
   # app104419507@heroku.com
   # rcvagtrp7711
-  
+
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
