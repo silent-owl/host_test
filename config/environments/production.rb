@@ -1,10 +1,21 @@
 Rails.application.configure do
   
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.delivery_method = :test
-  host = 'example.com' # Don't use this literally; use your local dev host instead
-  config.action_mailer.default_url_options = { host: host, protocol: 'https' }
-
+  config.action_mailer.delivery_method = :smtp
+  host = 'obscure-earth-87476.herokuapp.com'
+  config.action_mailer.default_url_options = { host: host }
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['app104419507@heroku.com'],
+    :password       => ENV['rcvagtrp7711'],
+    :domain         => 'heroku.com',
+    :enable_starttls_auto => true
+  }
+  # app104419507@heroku.com
+  # rcvagtrp7711
+  
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
