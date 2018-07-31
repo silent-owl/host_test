@@ -9,6 +9,8 @@ gem 'rails', '~> 5.2.0'
 gem  'pg' ,  '0.20.0'
 gem 'rails_12factor', group: :production
 
+gem "will_paginate", "~> 3.0.4" 
+
 gem 'puma', '~> 3.11'
 gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'

@@ -22134,3 +22134,855 @@ Migrating to AddActivationToUsers (20180731154047)
   ↳ bin/rails:9
   [1m[35m (83.5ms)[0m  [1m[35mDROP DATABASE IF EXISTS "db/test"."sqlite3"[0m
   ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2018-07-31 19:38:28 +0300
+  
+ActiveRecord::PendingMigrationError (
+
+Migrations are pending. To resolve this issue, run:
+
+        bin/rails db:migrate RAILS_ENV=development
+
+):
+  
+activerecord (5.2.0) lib/active_record/migration.rb:579:in `check_pending!'
+activerecord (5.2.0) lib/active_record/migration.rb:556:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/callbacks.rb:28:in `block in call'
+activesupport (5.2.0) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (5.2.0) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/debug_exceptions.rb:61:in `call'
+web-console (3.6.2) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.6.2) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.6.2) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.0) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.0) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.0) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.0.5) lib/rack/method_override.rb:22:in `call'
+rack (2.0.5) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.0) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.0) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.0.5) lib/rack/sendfile.rb:111:in `call'
+railties (5.2.0) lib/rails/engine.rb:524:in `call'
+puma (3.12.0) lib/puma/configuration.rb:225:in `call'
+puma (3.12.0) lib/puma/server.rb:658:in `handle_request'
+puma (3.12.0) lib/puma/server.rb:472:in `process_client'
+puma (3.12.0) lib/puma/server.rb:332:in `block in run'
+puma (3.12.0) lib/puma/thread_pool.rb:133:in `block in spawn_thread'
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ bin/rails:9
+  [1m[35m (13.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  ↳ bin/rails:9
+  [1m[35m (17.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to CreateUsers (20180726093355)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "email" varchar, "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL)[0m
+  ↳ db/migrate/20180726093355_create_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180726093355"]]
+  ↳ bin/rails:9
+  [1m[35m (27.4ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to AddIndexToUsersEmail (20180726095916)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  ↳ db/migrate/20180726095916_add_index_to_users_email.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (5.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180726095916"]]
+  ↳ bin/rails:9
+  [1m[35m (12.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to AddPasswordDigestToUsers (20180726100904)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (1.6ms)[0m  [1m[35mALTER TABLE "users" ADD "password_digest" varchar[0m
+  ↳ db/migrate/20180726100904_add_password_digest_to_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180726100904"]]
+  ↳ bin/rails:9
+  [1m[35m (8.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to AddRememberDigestToUsers (20180727073604)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (4.5ms)[0m  [1m[35mALTER TABLE "users" ADD "remember_digest" varchar[0m
+  ↳ db/migrate/20180727073604_add_remember_digest_to_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180727073604"]]
+  ↳ bin/rails:9
+  [1m[35m (17.1ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to AddBanValueToUsers (20180729131855)
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (2.6ms)[0m  [1m[35mALTER TABLE "users" ADD "ban" boolean DEFAULT 0[0m
+  ↳ db/migrate/20180729131855_add_ban_value_to_users.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180729131855"]]
+  ↳ bin/rails:9
+  [1m[35m (15.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+Migrating to AddActivationToUsers (20180731154047)
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (5.4ms)[0m  [1m[35mALTER TABLE "users" ADD "activation_digest" varchar[0m
+  ↳ db/migrate/20180731154047_add_activation_to_users.rb:3
+  [1m[35m (0.5ms)[0m  [1m[35mALTER TABLE "users" ADD "activated" boolean DEFAULT 0[0m
+  ↳ db/migrate/20180731154047_add_activation_to_users.rb:4
+  [1m[35m (0.7ms)[0m  [1m[35mALTER TABLE "users" ADD "activated_at" datetime[0m
+  ↳ db/migrate/20180731154047_add_activation_to_users.rb:5
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20180731154047"]]
+  ↳ bin/rails:9
+  [1m[35m (20.6ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (1.3ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Create (2.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2018-07-31 16:38:47.796602"], ["updated_at", "2018-07-31 16:38:47.796602"]]
+  ↳ bin/rails:9
+  [1m[35m (24.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Started GET "/" for 127.0.0.1 at 2018-07-31 19:38:57 +0300
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/silent_owl/.rvm/gems/ruby-2.4.0/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (1269.3ms)
+  Rendered layouts/_rails_default.html.erb (380.1ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (9.0ms)
+Completed 200 OK in 1716ms (Views: 1700.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2018-07-31 19:39:02 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (1.0ms)
+  Rendered users/new.html.erb within layouts/application (45.6ms)
+  Rendered layouts/_rails_default.html.erb (91.9ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (1.3ms)
+  Rendered layouts/_footer.html.erb (1.6ms)
+Completed 200 OK in 244ms (Views: 152.1ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2018-07-31 19:39:59 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"GY5jLcv3znOlOXpb8t4ouP+c+MhcGt5dKw2jFssZMnp7NOBrK/xR6AAuVNCuQOO5/ajqvN9w0oatzqr6tOBeCg==", "user"=>{"name"=>"zabugeye@zippiex.com", "email"=>"zabugeye@zippiex.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (17.8ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER(?) LIMIT ?[0m  [["name", "zabugeye@zippiex.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (13.7ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "zabugeye@zippiex.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (4.2ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "activation_digest") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "zabugeye@zippiex.com"], ["email", "zabugeye@zippiex.com"], ["created_at", "2018-07-31 16:39:59.525662"], ["updated_at", "2018-07-31 16:39:59.525662"], ["password_digest", "$2a$10$cntC1GaO/hwgBh99YxUpeurq.z/bTIUQf.OC/GZo2Jdr9CM6tDS0W"], ["activation_digest", "$2a$10$qHQ2wTKXLCIue6CL/vUx0eGhhf9ugSsMHZ/sa1jxH9TNjZKkHvPuO"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (9.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+UserMailer#account_activation: processed outbound mail in 0.5ms
+Completed 500 Internal Server Error in 410ms (ActiveRecord: 45.3ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/mailers/user_mailer.rb:8:in `account_activation'
+app/models/user.rb:28:in `send_activation_email'
+app/controllers/users_controller.rb:22:in `create'
+Started GET "/signup" for 127.0.0.1 at 2018-07-31 19:48:52 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (1.0ms)
+  Rendered users/new.html.erb within layouts/application (10.3ms)
+  Rendered layouts/_rails_default.html.erb (78.1ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (1.4ms)
+Completed 200 OK in 195ms (Views: 112.5ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2018-07-31 19:48:54 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.6ms)
+  Rendered users/new.html.erb within layouts/application (8.2ms)
+  Rendered layouts/_rails_default.html.erb (78.1ms)
+  Rendered layouts/_shim.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (2.0ms)
+Completed 200 OK in 108ms (Views: 105.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-07-31 19:48:56 +0300
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (6.6ms)
+  Rendered layouts/_rails_default.html.erb (111.5ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (1.5ms)
+  Rendered layouts/_footer.html.erb (3.5ms)
+Completed 200 OK in 145ms (Views: 142.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-07-31 19:49:10 +0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/silent_owl/.rvm/gems/ruby-2.4.0/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (595.8ms)
+  Rendered layouts/_rails_default.html.erb (256.8ms)
+  Rendered layouts/_shim.html.erb (0.9ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (1.4ms)
+Completed 200 OK in 883ms (Views: 866.2ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2018-07-31 19:49:13 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.8ms)
+  Rendered users/new.html.erb within layouts/application (46.3ms)
+  Rendered layouts/_rails_default.html.erb (102.3ms)
+  Rendered layouts/_shim.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (2.6ms)
+  Rendered layouts/_footer.html.erb (1.3ms)
+Completed 200 OK in 269ms (Views: 167.5ms | ActiveRecord: 1.3ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2018-07-31 19:49:34 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"xgS1kKpeQlvWg4rwCnDN1Q5VEKRZc39FBBCfV3cZ2t2kvjbWSlXdwHOUpHtW7gbUDGEC0NoZc56C05a7COC2rQ==", "user"=>{"name"=>"kolya20", "email"=>"zabugeye@zippiex.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER(?) LIMIT ?[0m  [["name", "kolya20"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "zabugeye@zippiex.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (0.1ms)[0m  [1m[31mrollback transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.9ms)
+  Rendered users/new.html.erb within layouts/application (8.7ms)
+  Rendered layouts/_rails_default.html.erb (95.3ms)
+  Rendered layouts/_shim.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (3.8ms)
+  Rendered layouts/_footer.html.erb (1.8ms)
+Completed 200 OK in 284ms (Views: 131.5ms | ActiveRecord: 0.9ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2018-07-31 19:50:30 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8PNcsWnFpk+vInIzkE6d33uC19WWmruCeM8q+Fba88Di/m9n8Jql2wMFsp2F40d7IVMUVYCfH9I6piQMs4bqJQ==", "user"=>{"name"=>"kolya20", "email"=>"gggfd@pay-mon.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.3ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.4ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER(?) LIMIT ?[0m  [["name", "kolya20"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "gggfd@pay-mon.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (3.0ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "activation_digest") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "kolya20"], ["email", "gggfd@pay-mon.com"], ["created_at", "2018-07-31 16:50:30.240839"], ["updated_at", "2018-07-31 16:50:30.240839"], ["password_digest", "$2a$10$OPmJzI7j1XTWZAVKBWywbuuliFBvShozop6Lk2b4p0sPeJhRI6rtS"], ["activation_digest", "$2a$10$DYKooC4RdeO06bXARkjY0Oq8ONCInN068ur42zVoDnA1r00KqKzXu"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (16.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+UserMailer#account_activation: processed outbound mail in 0.6ms
+Completed 500 Internal Server Error in 387ms (ActiveRecord: 20.5ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/mailers/user_mailer.rb:8:in `account_activation'
+app/models/user.rb:28:in `send_activation_email'
+app/controllers/users_controller.rb:22:in `create'
+Started GET "/signup" for 127.0.0.1 at 2018-07-31 19:52:20 +0300
+Processing by UsersController#new as HTML
+Started GET "/signup" for 127.0.0.1 at 2018-07-31 19:52:31 +0300
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (1.4ms)
+  Rendered users/new.html.erb within layouts/application (13.4ms)
+  Rendered layouts/_rails_default.html.erb (184.1ms)
+  Rendered layouts/_shim.html.erb (0.9ms)
+  Rendered layouts/_header.html.erb (6.0ms)
+  Rendered layouts/_footer.html.erb (2.9ms)
+Completed 200 OK in 300ms (Views: 226.2ms | ActiveRecord: 1.7ms)
+
+
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.1ms)
+  Rendered users/new.html.erb within layouts/application (8.2ms)
+  Rendered layouts/_rails_default.html.erb (121.9ms)
+  Rendered layouts/_shim.html.erb (0.2ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (0.6ms)
+Completed 200 OK in 226ms (Views: 144.4ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2018-07-31 19:52:57 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KiNsMnMmnxDXEP2xAiaiE4pIBsSdILe4+iDpnUx9g5k4Ll/k6nmchHs3PR8Xi3i30JnFRIslE+i4SedpqSGafA==", "user"=>{"name"=>"kolya21", "email"=>"gggggg@pay-mon.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER(?) LIMIT ?[0m  [["name", "kolya21"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "gggggg@pay-mon.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (2.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "activation_digest") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "kolya21"], ["email", "gggggg@pay-mon.com"], ["created_at", "2018-07-31 16:52:57.462314"], ["updated_at", "2018-07-31 16:52:57.462314"], ["password_digest", "$2a$10$KdJhL9ZNDvShvqZVtMvL.uIxzqw2JHsgdjNflhrUo8.ZKEsXh/kA."], ["activation_digest", "$2a$10$c1zi3G9UQLMmGoy319AnHOxjNakk0YeLbzfW.vho6x5C5bpq73zlS"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (24.5ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+UserMailer#account_activation: processed outbound mail in 0.6ms
+Completed 500 Internal Server Error in 330ms (ActiveRecord: 28.0ms)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 0)):
+  
+app/mailers/user_mailer.rb:8:in `account_activation'
+app/models/user.rb:28:in `send_activation_email'
+app/controllers/users_controller.rb:22:in `create'
+Started POST "/signup" for 127.0.0.1 at 2018-07-31 19:54:26 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KiNsMnMmnxDXEP2xAiaiE4pIBsSdILe4+iDpnUx9g5k4Ll/k6nmchHs3PR8Xi3i30JnFRIslE+i4SedpqSGafA==", "user"=>{"name"=>"kolya1990", "email"=>"kolya1990@pay-mon.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER(?) LIMIT ?[0m  [["name", "kolya1990"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "kolya1990@pay-mon.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "activation_digest") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "kolya1990"], ["email", "kolya1990@pay-mon.com"], ["created_at", "2018-07-31 16:54:26.638975"], ["updated_at", "2018-07-31 16:54:26.638975"], ["password_digest", "$2a$10$ilSvQI8flpPrZ1MxxxJOuORBFTujOThC98Cumpr3XtXACEdqeh2u."], ["activation_digest", "$2a$10$GM76D2RPbFPfZ7nAa/qk6OhM/MykGvlV1lp3seSyCz7NDj8TZGBOm"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (17.0ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  Rendering user_mailer/account_activation.html.erb within layouts/mailer
+  Rendered user_mailer/account_activation.html.erb within layouts/mailer (2.6ms)
+  Rendering user_mailer/account_activation.text.erb within layouts/mailer
+  Rendered user_mailer/account_activation.text.erb within layouts/mailer (1.5ms)
+UserMailer#account_activation: processed outbound mail in 1857.9ms
+Sent mail to kolya1990@pay-mon.com (889.0ms)
+Date: Tue, 31 Jul 2018 19:54:28 +0300
+From: from@example.com
+To: kolya1990@pay-mon.com
+Message-ID: <5b609444c51a8_340d2b0bc4ad2e883808f@vubuntu.mail>
+Subject: Account activation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5b6094449ec64_340d2b0bc4ad2e883799b";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5b6094449ec64_340d2b0bc4ad2e883799b
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi kolya1990,
+
+Welcome to the Sample App! Click on the link below to activate your account:
+
+http://localhost:3000/account_activations/UA_7mQ30puKkXPCeeQZ9VA/edit?email=kolya1990%40pay-mon.com
+
+----==_mimepart_5b6094449ec64_340d2b0bc4ad2e883799b
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Art Space</h1>
+
+<p>Hi kolya1990,</p>
+
+<p>
+Welcome to the Art Space! Click on the link below to activate your account:
+</p>
+
+<a href="http://localhost:3000/account_activations/UA_7mQ30puKkXPCeeQZ9VA/edit?email=kolya1990%40pay-mon.com">Activate</a>
+  </body>
+</html>
+
+----==_mimepart_5b6094449ec64_340d2b0bc4ad2e883799b--
+
+Redirected to http://0.0.0.0:3000/users/4
+Completed 302 Found in 3090ms (ActiveRecord: 20.1ms)
+
+
+Started GET "/users/4" for 127.0.0.1 at 2018-07-31 19:54:29 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"4"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 4], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.3ms)
+
+
+  
+NameError (uninitialized constant UsersController::FILL_IN):
+  
+app/controllers/users_controller.rb:11:in `show'
+Started GET "/signup" for 127.0.0.1 at 2018-07-31 19:55:52 +0300
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.9ms)
+  Rendered users/new.html.erb within layouts/application (9.9ms)
+  Rendered layouts/_rails_default.html.erb (70.3ms)
+  Rendered layouts/_shim.html.erb (0.7ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (1.0ms)
+Completed 200 OK in 145ms (Views: 91.7ms | ActiveRecord: 1.6ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2018-07-31 19:56:30 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"r2dRfh4pZyDkqPMfb7SxwAU/qEA+uTrYwPKxr9TUkWu9amKoh3ZktEiPM7F6GWtkX+5rwCi8noiCm79bMYiIjg==", "user"=>{"name"=>"boss", "email"=>"nick@zep-hyr.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.2ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.3ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER(?) LIMIT ?[0m  [["name", "boss"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (0.2ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "nick@zep-hyr.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (2.8ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "activation_digest") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "boss"], ["email", "nick@zep-hyr.com"], ["created_at", "2018-07-31 16:56:31.084630"], ["updated_at", "2018-07-31 16:56:31.084630"], ["password_digest", "$2a$10$7LyYfo.pk4AuQyBgoU3kKuLxpsywDCe6FahynPEtvvESCfulN/VkG"], ["activation_digest", "$2a$10$.XAEuI09eVi0tmR26aGBFOMWkP.L1CREHx9u4JGbFJvuYk83DK6jy"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (13.3ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  Rendering user_mailer/account_activation.html.erb within layouts/mailer
+  Rendered user_mailer/account_activation.html.erb within layouts/mailer (2.8ms)
+  Rendering user_mailer/account_activation.text.erb within layouts/mailer
+  Rendered user_mailer/account_activation.text.erb within layouts/mailer (0.9ms)
+UserMailer#account_activation: processed outbound mail in 25.3ms
+Sent mail to nick@zep-hyr.com (657.8ms)
+Date: Tue, 31 Jul 2018 19:56:31 +0300
+From: from@example.com
+To: nick@zep-hyr.com
+Message-ID: <5b6094bf4be40_340d2b0bc4ad2d703822@vubuntu.mail>
+Subject: Account activation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5b6094bf4aa38_340d2b0bc4ad2d703814f";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5b6094bf4aa38_340d2b0bc4ad2d703814f
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi boss,
+
+Welcome to the Sample App! Click on the link below to activate your account:
+
+http://localhost:3000/account_activations/4hX4PseLcZydUlyPPdcqcg/edit?email=nick%40zep-hyr.com
+
+----==_mimepart_5b6094bf4aa38_340d2b0bc4ad2d703814f
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Art Space</h1>
+
+<p>Hi boss,</p>
+
+<p>
+Welcome to the Art Space! Click on the link below to activate your account:
+</p>
+
+<a href="http://localhost:3000/account_activations/4hX4PseLcZydUlyPPdcqcg/edit?email=nick%40zep-hyr.com">Activate</a>
+  </body>
+</html>
+
+----==_mimepart_5b6094bf4aa38_340d2b0bc4ad2d703814f--
+
+Redirected to http://0.0.0.0:3000/users/5
+Completed 302 Found in 1055ms (ActiveRecord: 16.8ms)
+
+
+Started GET "/users/5" for 127.0.0.1 at 2018-07-31 19:56:32 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"5"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 5], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10
+Redirected to http://0.0.0.0:3000/
+Completed 302 Found in 4ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-07-31 19:56:32 +0300
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (8.4ms)
+  Rendered layouts/_rails_default.html.erb (70.7ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (1.1ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 101ms (Views: 97.3ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/signup" for 127.0.0.1 at 2018-07-31 20:13:02 +0300
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/silent_owl/.rvm/gems/ruby-2.4.0/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by UsersController#new as HTML
+  Rendering users/new.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (0.8ms)
+  Rendered users/new.html.erb within layouts/application (55.8ms)
+  Rendered layouts/_rails_default.html.erb (961.1ms)
+  Rendered layouts/_shim.html.erb (0.8ms)
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered layouts/_footer.html.erb (1.9ms)
+Completed 200 OK in 1216ms (Views: 1079.1ms | ActiveRecord: 3.0ms)
+
+
+Started POST "/signup" for 127.0.0.1 at 2018-07-31 20:13:40 +0300
+Processing by UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"7BlTpbVTXbhkE29mC9uD/TVi0MuOrAyeui3avCORPBSOo9DjVVjCI8EEQe1XRUj8N1bCvw3GAEU87tNQXGhQZA==", "user"=>{"name"=>"kolya_test", "email"=>"accepttest@hubii-network.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Create my account"}
+  [1m[35m (0.1ms)[0m  [1m[36mbegin transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (17.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."name") = LOWER(?) LIMIT ?[0m  [["name", "kolya_test"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Exists (18.5ms)[0m  [1m[34mSELECT  1 AS one FROM "users" WHERE LOWER("users"."email") = LOWER(?) LIMIT ?[0m  [["email", "accepttest@hubii-network.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[36mUser Create (7.7ms)[0m  [1m[32mINSERT INTO "users" ("name", "email", "created_at", "updated_at", "password_digest", "activation_digest") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "kolya_test"], ["email", "accepttest@hubii-network.com"], ["created_at", "2018-07-31 17:13:40.858601"], ["updated_at", "2018-07-31 17:13:40.858601"], ["password_digest", "$2a$10$xGCFJomXCSbSmwYAyQWKUOJ8JVs9rRMtkZJTvHBNMb8dZg49vxQza"], ["activation_digest", "$2a$10$DZIk7rHPFYM0/6nMrCHphe/9Q8kGkXSpvefb7PiO88JXaxWFDgnYC"]]
+  ↳ app/controllers/users_controller.rb:21
+  [1m[35m (9.2ms)[0m  [1m[36mcommit transaction[0m
+  ↳ app/controllers/users_controller.rb:21
+  Rendering user_mailer/account_activation.html.erb within layouts/mailer
+  Rendered user_mailer/account_activation.html.erb within layouts/mailer (2.9ms)
+  Rendering user_mailer/account_activation.text.erb within layouts/mailer
+  Rendered user_mailer/account_activation.text.erb within layouts/mailer (2.0ms)
+UserMailer#account_activation: processed outbound mail in 545.4ms
+Sent mail to accepttest@hubii-network.com (1746.6ms)
+Date: Tue, 31 Jul 2018 20:13:41 +0300
+From: from@example.com
+To: accepttest@hubii-network.com
+Message-ID: <5b6098c5aa228_382b2ac4f63ff904206bc@vubuntu.mail>
+Subject: Account activation
+Mime-Version: 1.0
+Content-Type: multipart/alternative;
+ boundary="--==_mimepart_5b6098c596bde_382b2ac4f63ff90420595";
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+
+----==_mimepart_5b6098c596bde_382b2ac4f63ff90420595
+Content-Type: text/plain;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+Hi kolya_test,
+
+Welcome to the Sample App! Click on the link below to activate your account:
+
+http://localhost:3000/account_activations/a4lnZI1c6IMfiTPvzBJ8Cw/edit?email=accepttest%40hubii-network.com
+
+----==_mimepart_5b6098c596bde_382b2ac4f63ff90420595
+Content-Type: text/html;
+ charset=UTF-8
+Content-Transfer-Encoding: 7bit
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Art Space</h1>
+
+<p>Hi kolya_test,</p>
+
+<p>
+Welcome to the Art Space! Click on the link below to activate your account:
+</p>
+
+<a href="http://localhost:3000/account_activations/a4lnZI1c6IMfiTPvzBJ8Cw/edit?email=accepttest%40hubii-network.com">Activate</a>
+  </body>
+</html>
+
+----==_mimepart_5b6098c596bde_382b2ac4f63ff90420595--
+
+Redirected to http://0.0.0.0:3000/users/6
+Completed 302 Found in 2705ms (ActiveRecord: 53.0ms)
+
+
+Started GET "/users/6" for 127.0.0.1 at 2018-07-31 20:13:43 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10
+Redirected to http://0.0.0.0:3000/
+Completed 302 Found in 12ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-07-31 20:13:43 +0300
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  Rendered static_pages/home.html.erb within layouts/application (11.9ms)
+  Rendered layouts/_rails_default.html.erb (74.5ms)
+  Rendered layouts/_shim.html.erb (0.9ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (1.9ms)
+Completed 200 OK in 111ms (Views: 105.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/account_activations/a4lnZI1c6IMfiTPvzBJ8Cw/edit?email=accepttest%40hubii-network.com" for 127.0.0.1 at 2018-07-31 20:13:54 +0300
+Processing by AccountActivationsController#edit as HTML
+  Parameters: {"email"=>"accepttest@hubii-network.com", "id"=>"a4lnZI1c6IMfiTPvzBJ8Cw"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "accepttest@hubii-network.com"], ["LIMIT", 1]]
+  ↳ app/controllers/account_activations_controller.rb:3
+Completed 500 Internal Server Error in 174ms (ActiveRecord: 0.5ms)
+
+
+  
+NameError (uninitialized constant User::FILL_IN):
+  
+app/models/user.rb:24:in `activate'
+app/controllers/account_activations_controller.rb:5:in `edit'
+Started GET "/account_activations/a4lnZI1c6IMfiTPvzBJ8Cw/edit?email=accepttest%40hubii-network.com" for 127.0.0.1 at 2018-07-31 20:15:00 +0300
+Processing by AccountActivationsController#edit as HTML
+  Parameters: {"email"=>"accepttest@hubii-network.com", "id"=>"a4lnZI1c6IMfiTPvzBJ8Cw"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."email" = ? LIMIT ?[0m  [["email", "accepttest@hubii-network.com"], ["LIMIT", 1]]
+  ↳ app/controllers/account_activations_controller.rb:3
+  [1m[36mUser Update (17.5ms)[0m  [1m[33mUPDATE "users" SET "activated" = ?, "activated_at" = ? WHERE "users"."id" = ?[0m  [["activated", 1], ["activated_at", "2018-07-31 17:15:00.802382"], ["id", 6]]
+  ↳ app/models/user.rb:24
+Redirected to http://localhost:3000/users/6
+Completed 302 Found in 188ms (ActiveRecord: 19.8ms)
+
+
+Started GET "/users/6" for 127.0.0.1 at 2018-07-31 20:15:00 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (1.1ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (0.7ms)
+  Rendered layouts/_rails_default.html.erb (95.2ms)
+  Rendered layouts/_shim.html.erb (1.0ms)
+  Rendered layouts/_header.html.erb (2.9ms)
+  Rendered layouts/_footer.html.erb (1.8ms)
+Completed 200 OK in 123ms (Views: 111.3ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-07-31 20:15:06 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+Completed 500 Internal Server Error in 5ms (ActiveRecord: 0.3ms)
+
+
+  
+NameError (uninitialized constant UsersController::FILL_IN):
+  
+app/controllers/users_controller.rb:6:in `index'
+Started GET "/users" for 127.0.0.1 at 2018-07-31 20:15:37 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."activated" = ? LIMIT ?[0m  [["activated", 1], ["LIMIT", 11]]
+  ↳ /home/silent_owl/.rvm/gems/ruby-2.4.0@global/gems/did_you_mean-1.1.0/lib/did_you_mean/core_ext/name_error.rb:10
+Completed 500 Internal Server Error in 68ms (ActiveRecord: 2.1ms)
+
+
+  
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."activated" = ? LIMIT ?[0m  [["activated", 1], ["LIMIT", 11]]
+  ↳ /home/silent_owl/.rvm/gems/ruby-2.4.0@global/gems/did_you_mean-1.1.0/lib/did_you_mean/core_ext/name_error.rb:10
+NoMethodError (undefined method `paginate' for #<User::ActiveRecord_Relation:0x007f0f341ed968>):
+  
+app/controllers/users_controller.rb:6:in `index'
+Started GET "/" for 127.0.0.1 at 2018-07-31 20:17:31 +0300
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered static_pages/home.html.erb within layouts/application (69.1ms)
+  Rendered layouts/_rails_default.html.erb (93.2ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (1.5ms)
+Completed 200 OK in 198ms (Views: 185.1ms | ActiveRecord: 2.9ms)
+
+
+Started GET "/users/6" for 127.0.0.1 at 2018-07-31 20:17:34 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.2ms)
+  Rendered layouts/_rails_default.html.erb (104.4ms)
+  Rendered layouts/_shim.html.erb (0.9ms)
+  Rendered layouts/_header.html.erb (2.4ms)
+  Rendered layouts/_footer.html.erb (3.5ms)
+Completed 200 OK in 143ms (Views: 130.8ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/6/edit" for 127.0.0.1 at 2018-07-31 20:17:36 +0300
+Processing by UsersController#edit as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:88
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:33
+  Rendering users/edit.html.erb within layouts/application
+  Rendered shared/_error_messages.html.erb (2.1ms)
+  Rendered users/edit.html.erb within layouts/application (11.4ms)
+  Rendered layouts/_rails_default.html.erb (95.3ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.5ms)
+  Rendered layouts/_footer.html.erb (1.5ms)
+Completed 200 OK in 133ms (Views: 124.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-07-31 20:17:41 +0300
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered static_pages/home.html.erb within layouts/application (17.7ms)
+  Rendered layouts/_rails_default.html.erb (104.8ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (2.8ms)
+  Rendered layouts/_footer.html.erb (2.5ms)
+Completed 200 OK in 148ms (Views: 145.6ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-07-31 20:17:43 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."activated" = ? LIMIT ?[0m  [["activated", 1], ["LIMIT", 11]]
+  ↳ /home/silent_owl/.rvm/gems/ruby-2.4.0@global/gems/did_you_mean-1.1.0/lib/did_you_mean/core_ext/name_error.rb:10
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 0.2ms)
+
+
+  
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."activated" = ? LIMIT ?[0m  [["activated", 1], ["LIMIT", 11]]
+  ↳ /home/silent_owl/.rvm/gems/ruby-2.4.0@global/gems/did_you_mean-1.1.0/lib/did_you_mean/core_ext/name_error.rb:10
+NoMethodError (undefined method `paginate' for #<User::ActiveRecord_Relation:0x007f0f40f33f08>):
+  
+app/controllers/users_controller.rb:6:in `index'
+Started GET "/" for 127.0.0.1 at 2018-07-31 20:19:55 +0300
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/silent_owl/.rvm/gems/ruby-2.4.0/gems/activerecord-5.2.0/lib/active_record/log_subscriber.rb:98
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered static_pages/home.html.erb within layouts/application (511.3ms)
+  Rendered layouts/_rails_default.html.erb (181.8ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (3.3ms)
+  Rendered layouts/_footer.html.erb (2.2ms)
+Completed 200 OK in 728ms (Views: 709.1ms | ActiveRecord: 2.2ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-07-31 20:19:57 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."activated" = ? LIMIT ? OFFSET ?[0m  [["activated", 1], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:37
+  Rendered users/index.html.erb within layouts/application (9.4ms)
+  Rendered layouts/_rails_default.html.erb (117.2ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (1.7ms)
+  Rendered layouts/_footer.html.erb (2.1ms)
+Completed 200 OK in 154ms (Views: 144.2ms | ActiveRecord: 0.8ms)
+
+
+Started GET "/users/6" for 127.0.0.1 at 2018-07-31 20:20:03 +0300
+Processing by UsersController#show as HTML
+  Parameters: {"id"=>"6"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:10
+  Rendering users/show.html.erb within layouts/application
+  Rendered users/show.html.erb within layouts/application (1.5ms)
+  Rendered layouts/_rails_default.html.erb (122.4ms)
+  Rendered layouts/_shim.html.erb (0.4ms)
+  Rendered layouts/_header.html.erb (1.8ms)
+  Rendered layouts/_footer.html.erb (2.7ms)
+Completed 200 OK in 158ms (Views: 147.5ms | ActiveRecord: 0.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-07-31 20:20:08 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."activated" = ? LIMIT ? OFFSET ?[0m  [["activated", 1], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:37
+  Rendered users/index.html.erb within layouts/application (6.7ms)
+  Rendered layouts/_rails_default.html.erb (87.1ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (1.9ms)
+  Rendered layouts/_footer.html.erb (1.2ms)
+Completed 200 OK in 122ms (Views: 113.2ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/" for 127.0.0.1 at 2018-07-31 20:20:16 +0300
+Processing by StaticPagesController#home as HTML
+  Rendering static_pages/home.html.erb within layouts/application
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendered static_pages/home.html.erb within layouts/application (13.0ms)
+  Rendered layouts/_rails_default.html.erb (81.0ms)
+  Rendered layouts/_shim.html.erb (0.6ms)
+  Rendered layouts/_header.html.erb (2.3ms)
+  Rendered layouts/_footer.html.erb (1.6ms)
+Completed 200 OK in 115ms (Views: 112.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2018-07-31 20:20:21 +0300
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT ?[0m  [["id", 6], ["LIMIT", 1]]
+  ↳ app/helpers/sessions_helper.rb:20
+  Rendering users/index.html.erb within layouts/application
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."activated" = ? LIMIT ? OFFSET ?[0m  [["activated", 1], ["LIMIT", 30], ["OFFSET", 0]]
+  ↳ app/views/users/index.html.erb:37
+  Rendered users/index.html.erb within layouts/application (12.8ms)
+  Rendered layouts/_rails_default.html.erb (109.9ms)
+  Rendered layouts/_shim.html.erb (0.5ms)
+  Rendered layouts/_header.html.erb (1.6ms)
+  Rendered layouts/_footer.html.erb (1.8ms)
+Completed 200 OK in 143ms (Views: 138.4ms | ActiveRecord: 0.8ms)
+
+
