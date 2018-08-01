@@ -10,7 +10,6 @@ Rails.application.configure do
     :domain         => 'mail.google.com',
     :user_name      => 'accept.mail.rails@gmail.com',
     :password       =>  ENV["Email_pass"],
-    # :password       =>  '123ruby123',
     :authentication => :plain,
     :enable_starttls_auto => true
   }
