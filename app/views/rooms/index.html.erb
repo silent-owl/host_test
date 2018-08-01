@@ -1,0 +1,112 @@
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" ; integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
+<% provide(:title, 'All rooms') %>
+<h1>All rooms</h1>
+
+<form name="RoomsForm">
+    
+    <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group" style="padding: 2px;margin-bottom: 5px; border: 2px solid lightgrey;">            
+            <!-- <button type="submit" class="btn btn-lg btn-dark fas fa-lock" id="lock" ></button> -->
+            <%= link_to "", {action: :delete_rooms}, method: :delete, remote: true, :class=>'btn btn-lg btn-dark fas fa-trash-alt', id: 'trash' %>
+            <%= link_to "", {action: :new}, method: :post, remote: true, :class=>'btn btn-lg btn-dark fas fa-plus-square', id: 'trash' %>
+        </div>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+            <th>
+                <input type="checkbox" class="checkbox" id="checkBoxAll">
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Owner Username
+            </th>
+            <th>
+                
+            </th>
+        </tr>
+   
+        </thead>
+        <tbody>
+            <% @rooms.each do |room| %>
+            
+            <tr>
+                <td   style="vertical-align: middle;">
+                    <%= check_box_tag "room_check", room.id, false, class: 'checkbox checkbox_room' %>
+                    <!-- <input type="checkbox" class="checkbox user" name="user_check" /> -->
+                </td>
+                <td   style="vertical-align: middle;">
+                    <%=link_to room.name, room %> 
+                </td>
+                <td   style="vertical-align: middle;">
+                    <% if logged_in? %>
+                        <%= room.owner %>        
+                    <% else %>
+                        UserName_table error             
+                    <% end %>
+                    
+                </td>
+                <td   style="vertical-align: middle;">
+                    <%= link_to "", {action: :delete_rooms}, method: :delete, remote: true, :class=>'btn btn-lg btn-dark fas fa-pencil-alt', id: 'trash' %>  
+                </td>
+            </tr>
+            <% end %>     
+        </tbody>
+        
+    </table>
+    <div id="show_ch_rooms"><b>Ammount of chousen rooms: <span style="color:green;" id="rooms_choise"></span></b></div>
+    
+</form>
+
+<script type="text/javascript">
+    $('.document').ready(function () {
+        $("#trash").attr("disabled", true);
+    
+        ["#trash"].forEach((value) => {
+            let button_id = $(value); 
+            let href = button_id.attr('href'); 
+            button_id.on('click', (event) => { 
+                let newHref = href + '?' 
+                $('.checkbox_room').each(function () { 
+                    if ($(this).prop('checked') == true) { 
+                        newHref += 'room_check%5B%5D=' + $(this).val() + '&' 
+                    } 
+                }); 
+            button_id.attr('href', newHref) 
+            }); 
+        })
+
+        
+
+        $('#checkBoxAll').click(function () {
+            if ($(this).is(":checked"))
+                $('input[name="room_check"]').prop('checked', true);
+            else
+                $('input[name="room_check"]').prop('checked', false);
+        });
+
+        
+
+        $('.checkbox').on('click', function () {
+            var count = $('.checkbox_room:checked').length;
+
+
+            $("#rooms_choise").text(count);
+            if (count == 0) {
+                $("#trash").attr("disabled", true);
+                
+            }
+            else {
+                $("#trash").attr("disabled", false);
+            }
+
+
+            // if (($(this).is(":unchecked")) && ($('#checkBoxAll').is(":checked")) )
+
+
+        });
+    });
+</script>

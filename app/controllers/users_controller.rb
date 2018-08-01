@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
+  include UsersHelper
+  before_action :logged_in_user, only: [:index, :edit, :update, :show]
   before_action :correct_user,   only: [:edit, :update]
   before_action :banned
   def index
@@ -16,6 +17,8 @@ class UsersController < ApplicationController
   end
 
   
+   
+
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
@@ -75,13 +78,7 @@ class UsersController < ApplicationController
     # Before filters
 
     # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
+    
 
      # Confirms the correct user.
     def correct_user
@@ -89,12 +86,4 @@ class UsersController < ApplicationController
       redirect_to(root_url) unless current_user?(@user)
     end
 
-
-  protected
-    def banned
-      if current_user.present? && current_user.ban?
-        redirect_to root_url
-        flash[:danger] = "You are banned on this site!"
-      end 
-    end  
 end
