@@ -11,7 +11,7 @@ class RoomsController < ApplicationController
   end
   def new
   	@room = Room.new
-  	@room.owner = current_user.name
+  	@room.owner = current_user.id
   	@room.name = 'Room_'+Room.maximum(:id).to_i.next.to_s
   	@room.save
   	redirect_to rooms_url

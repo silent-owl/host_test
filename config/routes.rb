@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  post 'rooms/new'
-  get 'sessions/new'
+
   root 'static_pages#home'
+
   get '/signup', to: 'users#new'
   post '/signup',  to: 'users#create'
   
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   delete 'users/ban_users', :as => :ban_users
   delete 'users/unban_users', :as => :unban_users
 
+  post 'rooms/new'
   delete 'rooms/delete_rooms', :as => :delete_rooms
   resources :users 
   resources :rooms 

@@ -43,7 +43,7 @@
                 </td>
                 <td   style="vertical-align: middle;">
                     <% if logged_in? %>
-                        <%= room.owner %>        
+                        <%= User.find_by(id: room.owner).name %>        
                     <% else %>
                         UserName_table error             
                     <% end %>

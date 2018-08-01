@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(version: 2018_08_01_084904) do
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
-    t.string "owner"
+    t.integer "owner"
     t.string "path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
