@@ -12,8 +12,8 @@ Rails.application.configure do
     :port => 587,
     :domain => "mail.google.com",
     :user_name => "accept.mail.rails@gmail.com",
-    # :password => "123ruby123",
-    :password => ENV["Email_pass"],
+    :password => "123ruby123",
+    # :password => ENV["Email_pass"],
     :authentication => "plain",
     :enable_starttls_auto => 'true'
   }
