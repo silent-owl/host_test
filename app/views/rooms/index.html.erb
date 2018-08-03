@@ -5,7 +5,7 @@
 <form name="RoomsForm">
     
     <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
-        <div class="btn-group mr-2" role="group" aria-label="First group" style="padding: 2px;margin-bottom: 5px; border: 2px solid lightgrey;">            
+        <div class="btn-group" role="group" aria-label="First group" style="padding: 2px;margin-bottom: 5px; border: 2px solid lightgrey;">            
             <!-- <button type="submit" class="btn btn-lg btn-dark fas fa-lock" id="lock" ></button> -->
             <%= link_to "", {action: :delete_rooms}, method: :delete, remote: true, :class=>'btn btn-lg btn-dark fas fa-trash-alt', id: 'trash' %>
             <%= link_to "", {action: :new}, method: :post, remote: true, :class=>'btn btn-lg btn-dark fas fa-plus-square', id: 'trash' %>

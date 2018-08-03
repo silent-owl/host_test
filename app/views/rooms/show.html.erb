@@ -1,26 +1,72 @@
-
+<% provide(:title, 'Room') %>
 
 <h1><%= @room.name %></h1>
 
-<div class="container-fluid center">
-	<canvas id="myCanvas" width="800" height="500"
-	                style="background-color:#fff; border: 1px solid #ccc; margin:10px;">
-	            Ваш браузер не поддерживает Canvas
-	</canvas>	
-</div>
+
+<form name="RoomsForm" class="center">
+	<div class="btn-toolbar container-fluid" role="toolbar" aria-label="Toolbar with button groups">
+        <div class="btn-group mr-2" role="group" aria-label="First group" style="padding: 5px;">            
+            <!-- <button type="submit" class="btn btn-lg btn-dark fas fa-lock" id="lock" ></button> -->
+            <div class="btn-group" style="margin-left: 200px;">
+			  <button type="button" class="btn btn-secondary butonVal" style="height: 40px; margin-right: 15px; width: 90px; border: 2px solid grey; border-radius: 3px;" value="1"><strong>Small</strong></button>
+			</div>
+			<div class="btn-group">
+			  <button type="button" class="btn btn-secondary butonVal" style="height: 40px; margin-right: 15px; width: 90px; border: 2px solid grey; border-radius: 3px;" value="3"><strong>Medium</strong></button>
+			</div>
+			<div class="btn-group">
+			  <button type="button" class="btn btn-secondary butonVal" style="height: 40px; margin-right: 15px; width: 90px; border: 2px solid grey; border-radius: 3px;" value="8"><strong>Bold</strong></button>
+			</div>
+			<div class="btn-group">
+					<input type="color" id="color" value="#000" style="width: 90px; height: 40px !important; padding: none !important; border: 2px solid grey; border-radius: 2px;">
+			</div>
+        </div>
+    </div>
+
+	<div class="container">
+		
+		<canvas id="myCanvas" width="690" height="600"
+		                style="background-color:#fff; border: 1px solid #ccc; margin:10px;">
+		            Ваш браузер не поддерживает Canvas
+		</canvas>	
+	</div>
+</form>
+	
 
 
-<script>
+
+<script>  
+		$(document).ready(function(){
             var canvas = document.getElementById("myCanvas"), 
                 context = canvas.getContext("2d"),
                 w = canvas.width,
                 h=canvas.height;
-                 
+
+            var myColor = 'black';
+   //          document.getElementById("color").oninput = function(){
+			// 	myColor = this.value;
+			// }   
+            var strstyle = 1;
+
+			$('.butonVal').click(function(){
+		       strstyle = this.value;
+		    });
+             
             var mouse = { x:0, y:0};
             var draw = false;
-             
+            document.getElementById("color").oninput = function(){
+					myColor = this.value;
+				}  
+            context.lineWidth = strstyle;
+            context.strokeStyle = myColor; 
             canvas.addEventListener("mousedown", function(e){
-                 
+                document.getElementById("color").oninput = function(){
+					myColor = this.value;
+				}  
+				$('.butonVal').click(function(){
+		       		strstyle = this.value;
+		    	});
+				context.strokeStyle = myColor; 
+				context.lineWidth = strstyle;
                 mouse.x = e.pageX - this.offsetLeft;
                 mouse.y = e.pageY - this.offsetTop;
                 draw = true;
@@ -28,7 +74,9 @@
                 context.moveTo(mouse.x, mouse.y);
             });
             canvas.addEventListener("mousemove", function(e){
-                 
+                document.getElementById("color").oninput = function(){
+					myColor = this.value;
+				} 
                 if(draw==true){
                  
                     mouse.x = e.pageX - this.offsetLeft;
@@ -46,5 +94,6 @@
                 context.closePath();
                 draw = false;
             });
+        });
 
 </script>
